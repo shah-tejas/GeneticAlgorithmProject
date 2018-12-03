@@ -2,16 +2,15 @@ package geneticAlgorithm;
 
 public class Seat {
 
-	private int seatId;
-	
+	private Person person;
 	private int tableId;
 
-	public int getSeatId() {
-		return seatId;
+	public Person getPerson() {
+		return person;
 	}
 
-	public void setSeatId(int seatId) {
-		this.seatId = seatId;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	public int getTableId() {
