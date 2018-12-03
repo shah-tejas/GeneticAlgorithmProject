@@ -42,7 +42,7 @@ public class Arrangement {
 					
 					//if the two persons are related, award 10 points to fitness
 					//else deduct 10 points
-					if(s.getPerson().getRelated() == s1.getPerson().getRelated()) {
+					if(s.getPerson().getRelation() == s1.getPerson().getRelation()) {
 						f += 10;
 					}
 					else {
@@ -51,7 +51,7 @@ public class Arrangement {
 					
 					//if the two persons are related, award 5 points to fitness
 					//else deduct 5 points
-					if(s.getPerson().getEating() == s1.getPerson().getEating()) {
+					if(s.getPerson().getEatingPreferences() == s1.getPerson().getEatingPreferences()) {
 						f += 5;
 					}
 					else {
