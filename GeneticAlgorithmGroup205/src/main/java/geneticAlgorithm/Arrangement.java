@@ -1,6 +1,7 @@
 package geneticAlgorithm;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Arrangement {
@@ -110,9 +111,18 @@ public class Arrangement {
 	}
 
 	public void generateArrangement() {
+		for(int tableno = 0; tableno < ArrangementManager.numberOfTables(); tableno++) {
+			arrangement.add(tableno, ArrangementManager.getTable(tableno));
+		}
 		
+		//Randomly reorder the tables
+		Collections.shuffle(arrangement);
 	}
 	
+	public ArrayList<Table> getArrangement() {
+		return arrangement;
+	}
+
 	public int arrangementSize(){
 		return arrangement.size();
 	}
