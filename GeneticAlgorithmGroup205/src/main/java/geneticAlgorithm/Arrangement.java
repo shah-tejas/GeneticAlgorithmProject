@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class Arrangement {
 
-	ArrayList<Table> tables;
+	ArrayList<Table> arrangement;
 	
 	private double fitness;
 	
 	public Arrangement() {
-		tables = new ArrayList<>();
+		arrangement = new ArrayList<>();
 		fitness = 0;
 		
 		for(int i = 0; i < ArrangementManager.numberOfTables(); i++) {
-			tables.add(null);
+			arrangement.add(null);
 		}
 	}
 	
@@ -24,7 +24,7 @@ public class Arrangement {
 			
 			int totalFitness = 0;
 			
-			for(Table table : tables) {
+			for(Table table : arrangement) {
 				int f = 0;
 				Object o[] = table.getSeats().toArray();
 				for(int i = 0 ; i < o.length - 1; i++) {
@@ -60,7 +60,7 @@ public class Arrangement {
 				}
 				totalFitness += f;
 			}
-			fitness = (int) (totalFitness / tables.size());
+			fitness = (int) (totalFitness / arrangement.size());
 			
 			
 		}
@@ -69,6 +69,10 @@ public class Arrangement {
 	
 	public void generateArrangement() {
 		
+	}
+	
+	public int arrangementSize(){
+		return arrangement.size();
 	}
 	
 }
