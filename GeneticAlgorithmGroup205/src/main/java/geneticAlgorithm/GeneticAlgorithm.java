@@ -1,5 +1,7 @@
 package geneticAlgorithm;
 
+import java.util.ArrayList;
+
 public class GeneticAlgorithm {
 
 	
@@ -35,7 +37,33 @@ public class GeneticAlgorithm {
 
 		int startPosition= (int) (Math.random() * parent1.arrangementSize());
 		
-		int endPosition = (int) (Math.random() * parent2.arrangementSize());
+		int endPosition = (int) (Math.random() * parent1.arrangementSize());
+		
+		ArrayList<Seat> seats=new ArrayList<>(parent1.getArrangementSeats().size());
+		
+		for (int i = 0; i < parent1.arrangementSize(); i++) { 							//need to modify arrangementsize() function
+			if(startPosition < endPosition && i > startPosition && i<endPosition){
+				seats.set(i, parent1.getArrangementSeats().get(i));
+			}
+			else if(startPosition > endPosition){
+				if(!(i < startPosition && i > endPosition)){
+					seats.set(i, parent1.getArrangementSeats().get(i));
+				}
+			}
+		}
+		
+		for (int i = 0; i < parent2.arrangementSize(); i++) {
+			if(!seats.contains(parent2.getArrangementSeats().get(i))){
+				for (int j = 0; j < parent2.arrangementSize(); j++) {
+					if(seats.get(j) == null){
+						seats.set(j, parent2.getArrangementSeats().get(i));
+						break;
+					}
+				}
+			}
+		}
+		
+		child.setArrangementSeats(seats);
 		return child;
 	}
 	
