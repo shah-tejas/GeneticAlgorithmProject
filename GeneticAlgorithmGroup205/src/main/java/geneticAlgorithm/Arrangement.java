@@ -1,10 +1,12 @@
 package geneticAlgorithm;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Arrangement {
 
 	ArrayList<Table> arrangement;
+	ArrayList<Seat> arrangementSeats;
 	
 	private double fitness;
 	
@@ -67,6 +69,46 @@ public class Arrangement {
 		return fitness;
 	}
 	
+	public void createArrangementSeats() {
+		for(Table table : arrangement) {
+			for(Seat s : table.getSeats()) {
+				arrangementSeats.add(s);
+			}
+		}
+	}
+	
+	public ArrayList<Seat> getArrangementSeats() {
+		if(arrangementSeats == null) {
+			arrangementSeats = new ArrayList<>();
+			createArrangementSeats();
+		}
+		return arrangementSeats;
+	}
+	
+	public void setArrangmentSeats(ArrayList<Seat> seats) {
+		this.arrangementSeats = seats;
+		
+		HashMap<Integer, Table> tables = new HashMap<Integer, Table>();
+		for(int i = 0; i < ArrangementManager.numberOfTables(); i++) {
+			arrangement.add(null);
+		}
+		
+		for(Seat s : seats) {
+			Integer tabledId = s.getTableId();
+			if(!tables.containsKey(tabledId)) {
+				Table t = new Table();
+				t.setTableId(tabledId);
+				tables.put(tabledId, t);
+			}
+			tables.get(tabledId).getSeats().add(s);
+		}
+		
+		for(Table t : tables.values()) {
+			arrangement.add(t);
+		}
+		
+	}
+
 	public void generateArrangement() {
 		
 	}
