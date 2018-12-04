@@ -35,13 +35,13 @@ public class GeneticAlgorithm {
 		
 		Arrangement child= new Arrangement();
 
-		int startPosition= (int) (Math.random() * parent1.arrangementSize());
+		int startPosition= (int) (Math.random() * parent1.arrangementSeatsSize());
 		
-		int endPosition = (int) (Math.random() * parent1.arrangementSize());
+		int endPosition = (int) (Math.random() * parent1.arrangementSeatsSize());
 		
 		ArrayList<Seat> seats=new ArrayList<>(parent1.getArrangementSeats().size());
 		
-		for (int i = 0; i < parent1.arrangementSize(); i++) { 							//need to modify arrangementsize() function
+		for (int i = 0; i < parent1.arrangementSeatsSize(); i++) { 							
 			if(startPosition < endPosition && i > startPosition && i<endPosition){
 				seats.set(i, parent1.getArrangementSeats().get(i));
 			}
@@ -52,9 +52,9 @@ public class GeneticAlgorithm {
 			}
 		}
 		
-		for (int i = 0; i < parent2.arrangementSize(); i++) {
+		for (int i = 0; i < parent2.arrangementSeatsSize(); i++) {
 			if(!seats.contains(parent2.getArrangementSeats().get(i))){
-				for (int j = 0; j < parent2.arrangementSize(); j++) {
+				for (int j = 0; j < parent2.arrangementSeatsSize(); j++) {
 					if(seats.get(j) == null){
 						seats.set(j, parent2.getArrangementSeats().get(i));
 						break;
@@ -63,7 +63,7 @@ public class GeneticAlgorithm {
 			}
 		}
 		
-		child.setArrangementSeats(seats);
+		child.setArrangmentSeats(seats);
 		return child;
 	}
 	

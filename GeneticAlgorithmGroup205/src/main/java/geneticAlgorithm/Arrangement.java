@@ -117,4 +117,8 @@ public class Arrangement {
 		return arrangement.size();
 	}
 	
+	public int arrangementSeatsSize(){
+		return arrangementSeats.size();
+	}
+	
 }
