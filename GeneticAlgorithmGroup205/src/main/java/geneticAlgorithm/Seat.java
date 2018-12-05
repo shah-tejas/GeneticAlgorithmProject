@@ -4,6 +4,11 @@ public class Seat {
 
 	private Person person;
 	private int tableId;
+	
+	public Seat(int tableID) {
+		person = new Person();
+		this.tableId = tableID;
+	}
 
 	public Person getPerson() {
 		return person;
