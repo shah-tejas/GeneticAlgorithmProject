@@ -7,6 +7,7 @@ public class ArrangementManager {
 	private static ArrayList<Seat> seats;
 	private static ArrayList<Table> tables;
 	private static ArrayList<Person> persons;
+	private static int NumberOfPersons;
 	
 	public ArrangementManager() {
 		seats = new ArrayList<>();
@@ -52,4 +53,14 @@ public class ArrangementManager {
 	public static int numberOfPersons() {
 		return persons.size();
 	}
+
+	public static int getNumberOfPersons() {
+		return NumberOfPersons;
+	}
+
+	public static void setNumberOfPersons(int numberOfPersons) {
+		NumberOfPersons = numberOfPersons;
+	}
+	
+	
 }

@@ -17,7 +17,7 @@ public class Table {
 		this();
 		
 		for(int i = 0; i < numberOfSeats; i++) {
-			seats.add(new Seat());
+			seats.add(new Seat(tableId));
 		}
 	}
 

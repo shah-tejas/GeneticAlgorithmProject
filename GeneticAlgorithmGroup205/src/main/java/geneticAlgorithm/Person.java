@@ -3,11 +3,12 @@ package geneticAlgorithm;
 import java.util.Random;
 
 public class Person {
+	
+	private int personId;
+	private static int count = 1;
 
 	private int views;
-	
 	private int relation;
-	
 	private int eatingPreferences;
 	
 	Random random=new Random();
@@ -16,12 +17,14 @@ public class Person {
 		this.views = views;
 		this.relation = relation;
 		this.eatingPreferences = eatingPreferences;
+		personId = count++;
 	}
 
 	public Person() {
 		this.views = 1 + random.nextInt(5);
 		this.relation = 1 + random.nextInt(1);
 		this.eatingPreferences = 1 + random.nextInt(1);
+		personId = count++;
 	}
 
 	public int getViews() {

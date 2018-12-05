@@ -111,8 +111,18 @@ public class Arrangement {
 	}
 
 	public void generateArrangement() {
+		
+		int NumberOfPersonsPerTable = ArrangementManager.numberOfTables() / ArrangementManager.getNumberOfPersons();
+		
 		for(int tableno = 0; tableno < ArrangementManager.numberOfTables(); tableno++) {
-			arrangement.add(tableno, ArrangementManager.getTable(tableno));
+			Table t = ArrangementManager.getTable(tableno);
+			
+			for(int i = 0 ; i < NumberOfPersonsPerTable ; i++) {
+				t.getSeats().add(new Seat(t.getTableId()));
+			}
+			
+			arrangement.add(tableno, t);
+
 		}
 		
 		//Randomly reorder the tables
