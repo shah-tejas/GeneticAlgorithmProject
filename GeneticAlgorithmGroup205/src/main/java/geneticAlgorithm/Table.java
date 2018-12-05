@@ -14,7 +14,6 @@ public class Table {
 	public Table() {
 		tableId = count++;
 		seats = new ArrayList<>();
-		logger.debug("Creating new table with id: " + tableId);
 	}
 	
 	public Table(int tableId) {

@@ -22,7 +22,7 @@ public class Person {
 
 	public Person() {
 		this.views = 1 + random.nextInt(6);
-		this.relation = 1 + random.nextInt(2);
+		this.relation = 1 + random.nextInt(6);
 		this.eatingPreferences = 1 + random.nextInt(2);
 		personId = count++;
 	}
