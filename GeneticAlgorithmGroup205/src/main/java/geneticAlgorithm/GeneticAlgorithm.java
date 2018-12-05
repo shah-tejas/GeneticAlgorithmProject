@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class GeneticAlgorithm {
 
 	
-	public static final double mutationRate = 0.015;
+	public static final double mutationRate = 0.020;
 	
-	public static final int tournamentSize = 5;
+	public static final int tournamentSize = 10;
 	
 	public static final boolean elitism = true;
 	
@@ -22,12 +22,24 @@ public class GeneticAlgorithm {
 			elitismOffset=1;
 		}
 		
+		// crossover population
 		for (int i = elitismOffset; i < population.populationSize(); i++) {
 			
-			//Arrangement arrangement=arr
+			Arrangement parent1 = selectParent(population);
+			
+			Arrangement parent2 = selectParent(population);
+			
+			Arrangement child = crossover(parent1, parent2);
+			
+			newPopulation.saveArrangement(i, child);
 		}
 		
-		return population;
+		for(int i = elitismOffset; i < newPopulation.populationSize(); i++){
+			mutate(newPopulation.getArrangement(i));
+		}
+		
+		
+		return newPopulation;
 		
 	}
 	
@@ -41,6 +53,7 @@ public class GeneticAlgorithm {
 		
 		ArrayList<Seat> seats=new ArrayList<>(parent1.getArrangementSeats().size());
 		
+		//select the seats from parent 1 to crossover
 		for (int i = 0; i < parent1.arrangementSeatsSize(); i++) { 							
 			if(startPosition < endPosition && i > startPosition && i<endPosition){
 				seats.set(i, parent1.getArrangementSeats().get(i));
@@ -52,6 +65,7 @@ public class GeneticAlgorithm {
 			}
 		}
 		
+		//select the seats from parent 2 to crossover
 		for (int i = 0; i < parent2.arrangementSeatsSize(); i++) {
 			if(!seats.contains(parent2.getArrangementSeats().get(i))){
 				for (int j = 0; j < parent2.arrangementSeatsSize(); j++) {
@@ -65,6 +79,55 @@ public class GeneticAlgorithm {
 		
 		child.setArrangmentSeats(seats);
 		return child;
+	}
+	
+	public static void mutate(Arrangement arrangement){
+		
+		// loop for selecting two random tables
+		for(int i=0; i < arrangement.getArrangement().size(); i++){
+			
+			if(Math.random() < mutationRate){
+				
+				int j = (int) (arrangement.getArrangement().size()* Math.random());
+				
+				Table table1 = arrangement.getArrangement().get(i);
+				
+				Table table2 = arrangement.getArrangement().get(j);
+				
+				//select random seat position from table
+				
+				int k1 = (int) (arrangement.getArrangement().get(0).getSeats().size()* Math.random());
+				
+				int k2 = (int) (arrangement.getArrangement().get(0).getSeats().size()* Math.random());
+				
+				//swap seats at k position from table1 and table2
+				Person person1=table1.getSeats().get(k1).getPerson();
+				
+				Person person2=table1.getSeats().get(k2).getPerson();
+				
+				table1.getSeats().get(k1).setPerson(person2);
+				
+				table2.getSeats().get(k2).setPerson(person1);
+				
+			}
+			
+		}
+		
+		
+	}
+	
+	private static Arrangement selectParent(Population population){
+		
+		Population tournament = new Population(tournamentSize, false);
+		
+		for (int i = 0; i < tournamentSize; i++) {
+			int random=(int) Math.random() * population.populationSize();
+			tournament.saveArrangement(i, population.getArrangement(random));
+		}
+		
+		Arrangement arrangement = tournament.getFittest();
+				
+		return arrangement;
 	}
 	
 }
