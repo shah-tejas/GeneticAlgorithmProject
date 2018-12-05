@@ -36,17 +36,17 @@ public class GAImplementation {
 		//Create initial population and print the fitness
 		Population population = new Population(50, true);
 		Arrangement fittest = population.getFittest();
-		System.out.println("Initial best fitness : " + population.getFittest().getFitness());
+		logger.debug("Initial best fitness : " + population.getFittest().getFitness());
 		fittest.displayArrangement();
 		
 		//evolve the population
-		for(int i = 0 ; i < 10000 ; i++) {
+		for(int i = 0 ; i < 100000 ; i++) {
 			population = GeneticAlgorithm.evolvePopulation(population);
 		}
 		
 		//Print the fitness and the solution
 		fittest = population.getFittest();
-		System.out.println("Final best fitness : " + fittest.getFitness());
+		logger.debug("Final best fitness : " + fittest.getFitness());
 		fittest.displayArrangement();
 	}
 }

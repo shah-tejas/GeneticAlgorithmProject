@@ -5,10 +5,13 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
+
 public class Arrangement {
 
 	ArrayList<Table> arrangement;
 	ArrayList<Seat> arrangementSeats; 
+	final static Logger logger = Logger.getLogger(GAImplementation.class);
 	
 	private double fitness;
 	
@@ -43,10 +46,10 @@ public class Arrangement {
 					//if the two persons are related, award 10 points to fitness
 					//else deduct 10 points
 					if(s.getPerson().getRelation() == s1.getPerson().getRelation()) {
-						f += 10;
+						f += 20;
 					}
 					else {
-						f -= 10;
+						f -= 20;
 					}
 					
 					//if the two persons are related, award 5 points to fitness
@@ -150,9 +153,9 @@ public class Arrangement {
 	
 	public void displayArrangement() {
 		for(Table t : arrangement) {
-			System.out.println("\nTable Id : " + t.getTableId());
+			logger.debug("Table Id : " + t.getTableId());
 			for(Seat s : t.getSeats()) {
-				System.out.println("\tPerson Id : " + s.getPerson().getPersonId() + " Views: " + s.getPerson().getViews() + " Relation: " + s.getPerson().getRelation() + " Eating: " + s.getPerson().getEatingPreferences());
+				logger.debug("\tPerson Id : " + s.getPerson().getPersonId() + " Views: " + s.getPerson().getViews() + " Relation: " + s.getPerson().getRelation() + " Eating: " + s.getPerson().getEatingPreferences());
 			}
 		}
 	}
