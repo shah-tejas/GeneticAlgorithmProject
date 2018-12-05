@@ -1,4 +1,7 @@
-**/target/
+**/target/classes/geneticAlgorithm
+**/target/generated-sources
+**/target/maven-archiver
+**/target/maven-status
 
 **/build
 **/*.class
