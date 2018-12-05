@@ -71,7 +71,7 @@ public class GeneticAlgorithm {
 		for (int i = 0; i < parent2Seats.size(); i++) {
 			if(!childSeats.contains(parent2Seats.get(i))){
 				for (int j = 0; j < parent2Seats.size(); j++) {
-					if(childSeats.get(j) == null){
+					if(childSeats.get(j).getPerson() == null){
 						childSeats.set(j, parent2Seats.get(i));
 						break;
 					}

@@ -40,8 +40,9 @@ public class GAImplementation {
 		fittest.displayArrangement();
 		
 		//evolve the population
-		population = GeneticAlgorithm.evolvePopulation(population);
-		
+		for(int i = 0 ; i < 10000 ; i++) {
+			population = GeneticAlgorithm.evolvePopulation(population);
+		}
 		
 		//Print the fitness and the solution
 		fittest = population.getFittest();

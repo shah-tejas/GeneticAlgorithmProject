@@ -44,9 +44,7 @@ public class Table {
 	}
 	
 	public void emptyAllSeats() {
-		for(int i = 0; i < seats.size(); i++) {
-			seats.remove(i);
-		}
+		seats.clear();
 	}
 	
 }
