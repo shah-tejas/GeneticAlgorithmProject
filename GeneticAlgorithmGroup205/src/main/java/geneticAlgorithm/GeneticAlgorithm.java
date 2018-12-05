@@ -46,38 +46,43 @@ public class GeneticAlgorithm {
 	public static Arrangement crossover(Arrangement parent1, Arrangement parent2){
 		
 		Arrangement child= new Arrangement();
+		
+		ArrayList<Seat> parent1Seats = parent1.getArrangementSeats();
+		ArrayList<Seat> parent2Seats = parent2.getArrangementSeats();
 
-		int startPosition= (int) (Math.random() * parent1.arrangementSeatsSize());
+		int startPosition= (int) (Math.random() * parent1Seats.size());
+		int endPosition = (int) (Math.random() * parent1Seats.size());
 		
-		int endPosition = (int) (Math.random() * parent1.arrangementSeatsSize());
-		
-		ArrayList<Seat> seats=new ArrayList<>(parent1.getArrangementSeats().size());
+		ArrayList<Seat> childSeats=new ArrayList<>(parent1Seats.size());
+		for(int i = 0; i < parent1Seats.size(); i++) {
+			childSeats.add(new Seat(-1));
+		}
 		
 		//select the seats from parent 1 to crossover
-		for (int i = 0; i < parent1.arrangementSeatsSize(); i++) { 							
-			if(startPosition < endPosition && i > startPosition && i<endPosition){
-				seats.set(i, parent1.getArrangementSeats().get(i));
+		for (int i = 0; i < parent1Seats.size(); i++) { 							
+			if(startPosition < endPosition && i > startPosition && i < endPosition){
+				childSeats.set(i, parent1.getArrangementSeats().get(i));
 			}
 			else if(startPosition > endPosition){
 				if(!(i < startPosition && i > endPosition)){
-					seats.set(i, parent1.getArrangementSeats().get(i));
+					childSeats.set(i, parent1.getArrangementSeats().get(i));
 				}
 			}
 		}
 		
 		//select the seats from parent 2 to crossover
-		for (int i = 0; i < parent2.arrangementSeatsSize(); i++) {
-			if(!seats.contains(parent2.getArrangementSeats().get(i))){
-				for (int j = 0; j < parent2.arrangementSeatsSize(); j++) {
-					if(seats.get(j) == null){
-						seats.set(j, parent2.getArrangementSeats().get(i));
+		for (int i = 0; i < parent2Seats.size(); i++) {
+			if(!childSeats.contains(parent2Seats.get(i))){
+				for (int j = 0; j < parent2Seats.size(); j++) {
+					if(childSeats.get(j) == null){
+						childSeats.set(j, parent2Seats.get(i));
 						break;
 					}
 				}
 			}
 		}
 		
-		child.setArrangmentSeats(seats);
+		child.setArrangmentSeats(childSeats);
 		return child;
 	}
 	

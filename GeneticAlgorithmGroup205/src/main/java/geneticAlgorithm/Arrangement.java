@@ -14,10 +14,11 @@ public class Arrangement {
 	public Arrangement() {
 		arrangement = new ArrayList<>();
 		fitness = 0;
-		
+		/*
 		for(int i = 0; i < ArrangementManager.numberOfTables(); i++) {
 			arrangement.add(null);
 		}
+		*/
 	}
 	
 	public double getFitness() {
@@ -89,10 +90,9 @@ public class Arrangement {
 	public void setArrangmentSeats(ArrayList<Seat> seats) {
 		this.arrangementSeats = seats;
 		
+		ArrayList<Table> newArrangement = new ArrayList<>();
+		
 		HashMap<Integer, Table> tables = new HashMap<Integer, Table>();
-		for(int i = 0; i < ArrangementManager.numberOfTables(); i++) {
-			arrangement.add(null);
-		}
 		
 		for(Seat s : seats) {
 			Integer tabledId = s.getTableId();
@@ -105,14 +105,15 @@ public class Arrangement {
 		}
 		
 		for(Table t : tables.values()) {
-			arrangement.add(t);
+			newArrangement.add(t);
 		}
 		
+		this.arrangement = newArrangement;
 	}
 
 	public void generateArrangement() {
 		
-		int NumberOfPersonsPerTable = ArrangementManager.numberOfTables() / ArrangementManager.getNumberOfPersons();
+		int NumberOfPersonsPerTable = ArrangementManager.getNumberOfPersons() / ArrangementManager.numberOfTables();
 		
 		for(int tableno = 0; tableno < ArrangementManager.numberOfTables(); tableno++) {
 			Table t = ArrangementManager.getTable(tableno);

@@ -4,16 +4,10 @@ import java.util.ArrayList;
 
 public class ArrangementManager {
 
-	private static ArrayList<Seat> seats;
-	private static ArrayList<Table> tables;
-	private static ArrayList<Person> persons;
+	private static ArrayList<Seat> seats = new ArrayList<>();
+	private static ArrayList<Table> tables = new ArrayList<>();
+	private static ArrayList<Person> persons = new ArrayList<>();
 	private static int NumberOfPersons;
-	
-	public ArrangementManager() {
-		seats = new ArrayList<>();
-		tables = new ArrayList<>();
-		persons = new ArrayList<>();
-	}
 	
 	//methods for seats
 	public static void addSeat(Seat seat) {
