@@ -4,10 +4,16 @@ public class Seat {
 
 	private Person person;
 	private int tableId;
+	private int seatId;
+	private static int count = 1;
 	
-	public Seat(int tableID) {
+	Seat(){
+		seatId = count++;
 		person = new Person();
-		this.tableId = tableID;
+	}
+	
+	Seat(int dummy){
+		
 	}
 
 	public Person getPerson() {
@@ -24,6 +30,14 @@ public class Seat {
 
 	public void setTableId(int tableId) {
 		this.tableId = tableId;
+	}
+
+	public int getSeatId() {
+		return seatId;
+	}
+
+	public void setSeatId(int seatId) {
+		this.seatId = seatId;
 	}
 	
 	

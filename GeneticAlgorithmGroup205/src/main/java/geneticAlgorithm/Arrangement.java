@@ -3,22 +3,18 @@ package geneticAlgorithm;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Arrangement {
 
 	ArrayList<Table> arrangement;
-	ArrayList<Seat> arrangementSeats;
+	ArrayList<Seat> arrangementSeats; 
 	
 	private double fitness;
 	
 	public Arrangement() {
 		arrangement = new ArrayList<>();
 		fitness = 0;
-		/*
-		for(int i = 0; i < ArrangementManager.numberOfTables(); i++) {
-			arrangement.add(null);
-		}
-		*/
 	}
 	
 	public double getFitness() {
@@ -97,8 +93,7 @@ public class Arrangement {
 		for(Seat s : seats) {
 			Integer tabledId = s.getTableId();
 			if(!tables.containsKey(tabledId)) {
-				Table t = new Table();
-				t.setTableId(tabledId);
+				Table t = new Table(tabledId);
 				tables.put(tabledId, t);
 			}
 			tables.get(tabledId).getSeats().add(s);
@@ -113,21 +108,32 @@ public class Arrangement {
 
 	public void generateArrangement() {
 		
-		int NumberOfPersonsPerTable = ArrangementManager.getNumberOfPersons() / ArrangementManager.numberOfTables();
+		int NumberOfPersonsPerTable = ArrangementManager.getGuestsPerTable();
+		
+		ArrayList<Seat> allSeats = ArrangementManager.getAllSeats();
+		
+		//Shuffle the seats
+		Collections.shuffle(allSeats);
 		
 		for(int tableno = 0; tableno < ArrangementManager.numberOfTables(); tableno++) {
 			Table t = ArrangementManager.getTable(tableno);
 			
+			t.emptyAllSeats();
+			
 			for(int i = 0 ; i < NumberOfPersonsPerTable ; i++) {
-				t.getSeats().add(new Seat(t.getTableId()));
+				
+				//Pick a random seat
+				Random random = new Random();
+				int randomSeat = random.nextInt(allSeats.size());
+				Seat s = allSeats.get(randomSeat);
+				s.setTableId(t.getTableId());
+				t.addSeat(s);
+				allSeats.remove(randomSeat);
 			}
 			
-			arrangement.add(tableno, t);
+			arrangement.add(t);
 
 		}
-		
-		//Randomly reorder the tables
-		Collections.shuffle(arrangement);
 	}
 	
 	public ArrayList<Table> getArrangement() {
@@ -140,6 +146,15 @@ public class Arrangement {
 	
 	public int arrangementSeatsSize(){
 		return arrangementSeats.size();
+	}
+	
+	public void displayArrangement() {
+		for(Table t : arrangement) {
+			System.out.println("\nTable Id : " + t.getTableId());
+			for(Seat s : t.getSeats()) {
+				System.out.println("\tPerson Id : " + s.getPerson().getPersonId() + " Views: " + s.getPerson().getViews() + " Relation: " + s.getPerson().getRelation() + " Eating: " + s.getPerson().getEatingPreferences());
+			}
+		}
 	}
 	
 }

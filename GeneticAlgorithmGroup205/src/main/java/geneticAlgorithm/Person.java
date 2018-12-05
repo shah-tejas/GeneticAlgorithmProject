@@ -21,9 +21,9 @@ public class Person {
 	}
 
 	public Person() {
-		this.views = 1 + random.nextInt(5);
-		this.relation = 1 + random.nextInt(1);
-		this.eatingPreferences = 1 + random.nextInt(1);
+		this.views = 1 + random.nextInt(6);
+		this.relation = 1 + random.nextInt(2);
+		this.eatingPreferences = 1 + random.nextInt(2);
 		personId = count++;
 	}
 
@@ -49,6 +49,14 @@ public class Person {
 
 	public void setEatingPreferences(int eatingPreferences) {
 		this.eatingPreferences = eatingPreferences;
+	}
+
+	public int getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(int personId) {
+		this.personId = personId;
 	}
 	
 	

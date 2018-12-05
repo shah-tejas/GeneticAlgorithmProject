@@ -29,11 +29,9 @@ public class Population {
 	}
 	
 	public Arrangement getFittest(){
-		logger.debug("in getFittest()");
 		Arrangement fittest= arrangements[0];
 		
 		for(int i=1; i<populationSize(); i++){
-			logger.debug("Getting fitness for Arrangement #" + i);
 			if(fittest.getFitness() <= getArrangement(i).getFitness()){
 				fittest=getArrangement(i);
 			}

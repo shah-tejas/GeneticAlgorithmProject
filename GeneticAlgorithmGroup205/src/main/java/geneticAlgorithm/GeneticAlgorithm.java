@@ -25,12 +25,9 @@ public class GeneticAlgorithm {
 		// crossover population
 		for (int i = elitismOffset; i < population.populationSize(); i++) {
 			
-			Arrangement parent1 = selectParent(population);
-			
+			Arrangement parent1 = selectParent(population);	
 			Arrangement parent2 = selectParent(population);
-			
 			Arrangement child = crossover(parent1, parent2);
-			
 			newPopulation.saveArrangement(i, child);
 		}
 		
@@ -96,22 +93,16 @@ public class GeneticAlgorithm {
 				int j = (int) (arrangement.getArrangement().size()* Math.random());
 				
 				Table table1 = arrangement.getArrangement().get(i);
-				
 				Table table2 = arrangement.getArrangement().get(j);
 				
 				//select random seat position from table
+				int k1 = (int) (table1.getSeats().size()* Math.random());
+				int k2 = (int) (table2.getSeats().size()* Math.random());
 				
-				int k1 = (int) (arrangement.getArrangement().get(0).getSeats().size()* Math.random());
-				
-				int k2 = (int) (arrangement.getArrangement().get(0).getSeats().size()* Math.random());
-				
-				//swap seats at k position from table1 and table2
+				//swap persons seated at k1 and k2 positions from table1 and table2
 				Person person1=table1.getSeats().get(k1).getPerson();
-				
-				Person person2=table1.getSeats().get(k2).getPerson();
-				
+				Person person2=table2.getSeats().get(k2).getPerson();
 				table1.getSeats().get(k1).setPerson(person2);
-				
 				table2.getSeats().get(k2).setPerson(person1);
 				
 			}
