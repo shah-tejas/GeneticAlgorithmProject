@@ -48,12 +48,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Enter number of Tables :");
 
-        noOfTablesText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfTablesTextActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Enter number of Guests");
 
         jLabel1.setText("Event Seat Assigner");
@@ -123,15 +117,11 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void noOfTablesTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfTablesTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfTablesTextActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int tablesno = Integer.parseInt(noOfTablesText.getText());
 
-        int guestsno = Integer.parseInt(noOfTablesText.getText());
+        int guestsno = Integer.parseInt(noOfGuestsText.getText());
 
         CardLayout layout=(CardLayout)rightJPanel.getLayout();
 

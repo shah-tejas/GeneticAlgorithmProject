@@ -21,14 +21,17 @@ import javax.swing.table.DefaultTableModel;
 public class ViewDetailsJPanel extends javax.swing.JPanel {
 
     Arrangement arrangement;
+    int tablesno;
+    int guestsno;
 
     /**
      * Creates new form ViewDetailsJPanel
      */
     public ViewDetailsJPanel(int tablesno, int guestsno) {
         initComponents();
-        calculateFitness(tablesno, guestsno);
         
+        this.tablesno = tablesno;
+        this.guestsno = guestsno;
     }
 
     /**
@@ -48,6 +51,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         txtInitalFitness = new javax.swing.JLabel();
         txtFinalFitness = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnCalculate = new javax.swing.JButton();
 
         jLabel1.setText("Table :");
 
@@ -83,6 +87,13 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Final Fitness: ");
 
+        btnCalculate.setText("Calculate Result");
+        btnCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +104,9 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
                         .addGap(107, 107, 107)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(TablesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TablesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnCalculate))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -111,19 +124,21 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(TablesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(TablesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalculate))
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtInitalFitness)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(txtFinalFitness)))
+                        .addComponent(txtFinalFitness))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(txtInitalFitness)))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -153,6 +168,11 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_TablesComboBoxActionPerformed
+
+    private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
+        calculateFitness(tablesno, guestsno);
+        btnCalculate.setEnabled(false);
+    }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void calculateFitness(int tablesno, int guestsno) {
 
@@ -200,6 +220,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Object> TablesComboBox;
+    private javax.swing.JButton btnCalculate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
