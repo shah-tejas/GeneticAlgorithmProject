@@ -7,7 +7,7 @@ public class Seat {
 	private int seatId;
 	private static int count = 1;
 	
-	Seat(){
+	public Seat(){
 		seatId = count++;
 		person = new Person();
 	}

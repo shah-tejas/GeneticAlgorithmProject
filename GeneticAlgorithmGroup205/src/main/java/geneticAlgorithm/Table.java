@@ -45,5 +45,11 @@ public class Table {
 	public void emptyAllSeats() {
 		seats.clear();
 	}
+
+    @Override
+    public String toString() {
+        return String.valueOf(tableId);
+    }
 	
+        
 }
