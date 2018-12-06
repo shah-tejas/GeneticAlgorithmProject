@@ -6,6 +6,7 @@ public class Population {
 
 	Arrangement[] arrangements;
 	final static Logger logger = Logger.getLogger(Population.class);
+	
 
 	public Population(int populationSize, boolean initialize) {
 		arrangements = new Arrangement[populationSize];
