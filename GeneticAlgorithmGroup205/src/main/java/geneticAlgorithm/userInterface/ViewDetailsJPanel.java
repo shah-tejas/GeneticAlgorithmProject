@@ -26,9 +26,9 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
      * Creates new form ViewDetailsJPanel
      */
     public ViewDetailsJPanel(int tablesno, int guestsno) {
-
-        calculateFitness(tablesno, guestsno);
         initComponents();
+        calculateFitness(tablesno, guestsno);
+        
     }
 
     /**
@@ -129,8 +129,9 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TablesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TablesComboBoxActionPerformed
-        int tableId = (Integer) TablesComboBox.getSelectedItem();
+         Table table= (Table) TablesComboBox.getSelectedItem();
 
+         int tableId=table.getTableId();
         if (this.arrangement != null) {
             DefaultTableModel model = (DefaultTableModel) tableDetail.getModel();
 
