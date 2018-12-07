@@ -50,7 +50,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Enter number of Guests");
 
-        jLabel1.setText("Event Seat Assigner");
+        jLabel1.setText("Event Table Organiser");
 
         jButton1.setText("Generate Arrangement");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

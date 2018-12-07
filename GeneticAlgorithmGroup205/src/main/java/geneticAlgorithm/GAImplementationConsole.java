@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-public class GAImplementation {
+public class GAImplementationConsole {
 	
-	final static Logger logger = Logger.getLogger(GAImplementation.class);
+	final static Logger logger = Logger.getLogger(GAImplementationConsole.class);
 
 	public static void main(String args[]) {
 		
@@ -37,16 +37,24 @@ public class GAImplementation {
 		Population population = new Population(50, true);
 		Arrangement fittest = population.getFittest();
 		logger.debug("Initial best fitness : " + population.getFittest().getFitness());
-		fittest.displayArrangement();
+		//fittest.displayArrangement();
 		
+		int j = 0;
 		//evolve the population
-		for(int i = 0 ; i < 100000 ; i++) {
+		for(int i = 0 ; i < 500000 ; i++) {
 			population = GeneticAlgorithm.evolvePopulation(population);
+			//log fitness after every 1000 evolution
+//			if(j == 1000){
+//				logger.debug("Evolution of fitness : " + population.getFittest().getFitness());
+//				j=0;
+//			}
+//			
+//			j++;
 		}
 		
 		//Print the fitness and the solution
 		fittest = population.getFittest();
 		logger.debug("Final best fitness : " + fittest.getFitness());
-		fittest.displayArrangement();
+		//fittest.displayArrangement();
 	}
 }

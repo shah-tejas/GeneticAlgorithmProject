@@ -124,7 +124,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Event Seat Assigner"/>
+                <Property name="text" type="java.lang.String" value="Event Table Organiser"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">

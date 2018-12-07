@@ -7,12 +7,15 @@ package geneticAlgorithm.userInterface;
 
 import geneticAlgorithm.Arrangement;
 import geneticAlgorithm.ArrangementManager;
+import geneticAlgorithm.GAImplementationConsole;
 import geneticAlgorithm.GeneticAlgorithm;
 import geneticAlgorithm.Person;
 import geneticAlgorithm.Population;
 import geneticAlgorithm.Seat;
 import geneticAlgorithm.Table;
 import javax.swing.table.DefaultTableModel;
+
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -23,6 +26,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
     Arrangement arrangement;
     int tablesno;
     int guestsno;
+    final static Logger logger = Logger.getLogger(ViewDetailsJPanel.class);
 
     /**
      * Creates new form ViewDetailsJPanel
@@ -195,22 +199,32 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         double initialFitness = population.getFittest().getFitness();
 
         txtInitalFitness.setText(String.valueOf(initialFitness));
+        
+        logger.debug("Initial best fitness : " + initialFitness);
 
-        fittest.displayArrangement();
+        //fittest.displayArrangement();
+        
+        int j = 0;
 
         //evolve the population
         for (int i = 0; i < 100000; i++) {
             population = GeneticAlgorithm.evolvePopulation(population);
+            if(j == 1000){
+				logger.debug("Evolution of fitness : " + population.getFittest().getFitness());
+				j = 0;
+			}
+			
+			j++;
         }
 
         //Print the fitness and the solution
         fittest = population.getFittest();
         double finalFitness = fittest.getFitness();
         txtFinalFitness.setText(String.valueOf(finalFitness));
-        fittest.displayArrangement();
+        //fittest.displayArrangement();
 
         this.arrangement = fittest;
-
+        logger.debug("Final best fitness : " + finalFitness);
         for (Table t : fittest.getArrangement()) {
             TablesComboBox.addItem(t);
         }
