@@ -40,5 +40,8 @@ public class Seat {
 		this.seatId = seatId;
 	}
 	
+        public static void reset(){
+            count = 0;
+        }
 	
 }

@@ -45,6 +45,10 @@ public class Table {
 	public void emptyAllSeats() {
 		seats.clear();
 	}
+        
+        public static void reset(){
+            count = 0;
+        }
 
     @Override
     public String toString() {

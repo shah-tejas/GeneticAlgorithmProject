@@ -39,5 +39,13 @@ public class ArrangementManager {
 
 		return allSeats;
 	}
+        
+        public static void reset(){
+            GuestsPerTable = 0;
+            tables.clear();
+            Person.reset();
+            Table.reset();
+            Seat.reset();
+        }
 
 }
