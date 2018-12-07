@@ -11,7 +11,7 @@ public class Arrangement {
 
 	ArrayList<Table> arrangement;
 	ArrayList<Seat> arrangementSeats; 
-	final static Logger logger = Logger.getLogger(GAImplementation.class);
+	final static Logger logger = Logger.getLogger(GAImplementationConsole.class);
 	
 	private double fitness;
 	
