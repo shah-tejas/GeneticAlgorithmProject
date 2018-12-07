@@ -60,7 +60,9 @@ public class Person {
 	}
 	
 	
-	
+	public static void reset(){
+            count = 0;
+        }
 	
 	
 }

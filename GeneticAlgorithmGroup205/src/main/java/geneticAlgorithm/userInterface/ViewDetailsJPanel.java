@@ -29,7 +29,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
      */
     public ViewDetailsJPanel(int tablesno, int guestsno) {
         initComponents();
-        
+        ArrangementManager.reset();
         this.tablesno = tablesno;
         this.guestsno = guestsno;
     }
